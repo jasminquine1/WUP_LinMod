@@ -170,10 +170,45 @@ The p-value from the F-statistic is 0.0000000000000002, indicating that the data
   
 The prediction interval for SIMS, given a GRIP value of 94 and an ARM value of 88, is as follows.
 
+```{r}
+newdata = data.frame(GRIP=94, ARM=88)
+predSIMS = predict(model.3, newdata, interval='pred')
+print(predSIMS)
+```
+
+The predicted SIMS score for a GRIP value of 94 and an ARM value of 88 is 0.150, with a prediction interval of (-2.13, 2.43).
+
 ## Comparing nested models ANOVA Test
 
 ### Model.1 vs Model.3
+
+```{r}
+anova(model.1, model.3)
+summary.lm(model.1)
+model.1=lm(SIMS~ ARM, data=data)
+
+```
+
+The NOVA indicates a difference between the models, as evidenced by the p-value of 0.000004.
+
+Model 2, which includes SIMS ~ ARM + GRIP, is superior to Model 1, which includes SIMS ~ ARM, due to its lower residual sum of squares (RSS). Specifically, Model 2 has an RSS of 188, compared to 218 for Model 1.
+
 ### Model.2 vs Model.3
+```{r}
+model.2=lm(SIMS ~ GRIP, data=data)
+anova(model.2, model.3)
+summary.lm(model.1)
+```
+
+The model SIMS ~ ARM + GRIP is better than the model SIMS ~ GRIP because it has a lower residual sum of squares (RSS) of 188 and a p-value of 0.000000014, indicating a more statistically significant improvement.
 
 ## Informally compare Model.1 with model.2
+```{r}
+summary.lm(model.1)
+summary.lm(model.2)
+```
+
+Model 1, SIMS ~ ARM, is better than Model 2, SIMS ~ GRIP, because it has a lower residual sum of squares compared to Model 2.
+
+
 
