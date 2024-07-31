@@ -67,7 +67,7 @@ abline(model.1, col="red")
 
 ```
 
-The p- valuves for the intercept and slope are..
+The p-values for both the intercept and slope are 0.00000000000000022. Since these values are much smaller than 0.05, we reject the null hypothesise. 
 
 
 #### Predict at target point
@@ -87,8 +87,7 @@ The SIMS prediction for ARM= 88 is 0.7, the predicting interval is (-1.73, 3.14)
 ```{r}
 plot(SIMS~GRIP,data=data)
 ```
-This graph shows that...
-
+The scatter plot shows that higher GRIP strength leads to higher simulation scores. 
 
 ### Numerical results 
 
@@ -96,7 +95,7 @@ This graph shows that...
 cor(SIMS~GRIP,data=data)
 ```
 
-...
+This shows that as grip strength increases, the simulation scores will also increase.
 
 ### Inferential  (Build model.2)
 
